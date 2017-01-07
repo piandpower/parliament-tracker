@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160924004109) do
+ActiveRecord::Schema.define(version: 20170107033046) do
 
   create_table "bills", force: :cascade do |t|
     t.date     "date_introduced"
@@ -78,6 +78,21 @@ ActiveRecord::Schema.define(version: 20160924004109) do
 
   add_index "members", ["electoral_district_id"], name: "index_members_on_electoral_district_id"
   add_index "members", ["party_id"], name: "index_members_on_party_id"
+
+  create_table "members_news_articles", id: false, force: :cascade do |t|
+    t.integer "news_article_id", null: false
+    t.integer "member_id",       null: false
+  end
+
+  create_table "news_articles", force: :cascade do |t|
+    t.string   "title"
+    t.string   "description"
+    t.string   "outlet"
+    t.date     "date"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "link"
+  end
 
   create_table "parties", force: :cascade do |t|
     t.string   "name"
